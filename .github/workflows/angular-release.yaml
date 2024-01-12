@@ -32,7 +32,7 @@ jobs:
             - name: Checkout ov-core-gitops
               uses: actions/checkout@v3
               with:
-                repository: ov-core-gitops
+                repository: Ajaynano/ov-core-gitops
                 token: ${{ secrets.PAT_PR }}
                 path: 'ov-core-gitops'
                 persist-credentials: true
