@@ -1,0 +1,42 @@
+name: Front end release
+
+on:
+  workflow_dispatch:
+    inputs:
+        admin-ui:
+          type: boolean
+          description: Release admin-ui
+        version:
+            type: string
+        environment:
+            type: choice
+            options:
+                - Dev
+                - Int
+                - Prod
+        tag-latest:
+            type: boolean
+            default: false
+jobs:
+    release-admin-ui-dev:
+        name: create Release for admin ui dev
+        if: ${{ inputs.admin-ui && inputs.environment == 'Dev'}}
+        uses: ./.github/workflows/angular-release.yaml
+        with:
+            project-name: 'admin-ui'
+            version: ${{ inputs.version }}
+            version-postfix: '-dev'
+            tag-latest: ${{ inputs.tag-latest }}
+        secrets: inherit
+        
+    release-admin-ui-int:
+        name: create Release for admin ui dev
+        if: ${{ inputs.admin-ui && inputs.environment == 'Int'}}
+        uses: ./.github/workflows/angular-release.yaml
+        with:
+            project-name: 'admin-ui'
+            version: ${{ inputs.version }}
+            version-postfix: '-dev'
+            tag-latest: ${{ inputs.tag-latest }}
+        secrets: inherit    
+            
