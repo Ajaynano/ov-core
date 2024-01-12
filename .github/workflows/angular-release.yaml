@@ -18,6 +18,7 @@ on:
             tag-latest:
                 type: boolean
                 default: false  
+                required: false
 
 jobs:
     release-angular:
