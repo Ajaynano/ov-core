@@ -42,7 +42,7 @@ jobs:
             
             - name: Build container and push to dev
               id: admin-ui-dev
-              if: ${{ inputs.tag-latest && github.ref == 'refs/remotes/origin/main'}}
+              if: ${{ inputs.tag-latest && github.ref == 'refs/heads/main' }}
               run: |
                 echo ${{ inputs.tag-latest }}
                 echo ${{ inputs.version }}
