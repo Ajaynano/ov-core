@@ -42,7 +42,6 @@ jobs:
             
             - name: Build container and push to dev
               id: admin-ui-dev
-              if: ${{ inputs.tag-latest && github.ref == 'main' }}
               run: |
                 echo ${{ inputs.tag-latest }}
                 echo ${{ inputs.version }}

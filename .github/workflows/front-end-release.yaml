@@ -16,7 +16,7 @@ on:
                 - Prod
         tag-latest:
             type: boolean
-            default: true
+            default: false
 jobs:
     release-admin-ui-dev:
         name: create Release for admin ui dev
