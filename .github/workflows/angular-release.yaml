@@ -17,7 +17,6 @@ on:
                 required: false
             tag-latest:
                 type: boolean
-                required: false
                 default: false  
 
 jobs:
@@ -42,7 +41,7 @@ jobs:
             
             - name: Build container and push to dev
               id: admin-ui-dev
-              if: ${{ inputs.tag-latest && github.ref == 'main' }}
+              if: ${{ inputs.tag-latest && github.ref == 'refs/heads/main' }}
               run: |
                 echo ${{ inputs.tag-latest }}
                 echo ${{ inputs.version }}
