@@ -88,16 +88,16 @@ jobs:
             
             - name: Send pull request
               run: |
-                LATEST_TAG=$(git describe --tags --always --abbrev=0)
+                # LATEST_TAG=$(git describe --tags --always --abbrev=0)
                 REPOSITORY="Ajaynano/ov-core-gitops"
                 FOLDER="bin/$REPOSITORY"
-                BRANCH_NAME="develop-$LATEST_TAG"
+                BRANCH_NAME="develop"
                 # Clone the remote repository and change working directory to the
                 # folder it was cloned to.
                 git clone \
                   --depth=1 \
                   --branch=main \
-                  https://Ajaynano:${{ secrets.PAT_PR }}@github.com/$REPOSITORY \
+                  https://Ajaynano:${{ secrets.repo_read_PAT }}@github.com/$REPOSITORY \
                   $FOLDER
                 cd $FOLDER
 
@@ -114,7 +114,7 @@ jobs:
 
                 # Store the PAT in a file that can be accessed by the
                 # GitHub CLI.
-                echo "${{ secrets.PAT_PR }}" > token.txt
+                echo "${{ secrets.repo_read_PAT }}" > token.txt
       
                 # # Authorize GitHub CLI for the current repository and
                 # # create a pull-requests containing the updates.
