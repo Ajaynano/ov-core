@@ -120,11 +120,9 @@ jobs:
                 # # create a pull-requests containing the updates.
                 gh auth login --with-token < token.txt
                 gh pr create \
-                  --assignee @me
                   --body "updating Dev manifestfile" \
                   --title "chore: update mainfest file" \
                   --head "$BRANCH_NAME" \
                   --base "main"
-                  --label "automatedpr, report"
                 
 
