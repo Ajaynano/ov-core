@@ -91,7 +91,7 @@ jobs:
                 LATEST_TAG=$(git describe --tags --always --abbrev=0)
                 REPOSITORY="Ajaynano/ov-core-gitops"
                 FOLDER="bin/$REPOSITORY"
-                BRANCH_NAME="develop-$LATEST_TAG""
+                BRANCH_NAME="develop-$LATEST_TAG"
                 # Clone the remote repository and change working directory to the
                 # folder it was cloned to.
                 git clone \
