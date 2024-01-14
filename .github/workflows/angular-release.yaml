@@ -32,11 +32,11 @@ jobs:
             - name: Checkout ov-core-gitops
               uses: actions/checkout@v3
               with:
-                repository: Ajaynano/ov-core-gitops
+                repository: ${{ github.event.pull_request.head.repo.full_name }}
                 token: ${{ secrets.PAT_PR }}
                 path: 'ov-core-gitops'
                 persist-credentials: true
-                ref: 'develop'
+                ref: ${{ github.event.pull_request.head.ref }}
             - name:  Build admin ui
               run: echo builing UI
             
@@ -67,7 +67,7 @@ jobs:
                 token: ${{ secrets.PAT_PR }}
                 committer: GitHub <noreply@github.com>
                 author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-                branch: develop
+                branch: ${{ github.event.pull_request.head.ref }}
                 base: main
                 title: '[Example] Update report'
                 body: |
