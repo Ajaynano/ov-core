@@ -114,7 +114,7 @@ jobs:
 
                 # Store the PAT in a file that can be accessed by the
                 # GitHub CLI.
-                # echo "${{ secrets.PAT_PR }}" > token.txt
+                echo "${{ secrets.PAT_PR }}" > token.txt
       
                 # # Authorize GitHub CLI for the current repository and
                 # # create a pull-requests containing the updates.
