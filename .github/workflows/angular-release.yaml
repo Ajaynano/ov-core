@@ -67,7 +67,7 @@ jobs:
               if: ${{ inputs.tag-latest && github.ref == 'refs/heads/release' }}
               run: |
                 echo ${{ inputs.tag-latest }}
-                echo ${{ inputs.version }}
+                echo ${{ inputs.version }}${{ inputs.version-postfix }}
                 echo "added int build and deploy"
 
             - name: update dev k8 manifest
