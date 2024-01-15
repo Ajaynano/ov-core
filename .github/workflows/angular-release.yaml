@@ -108,7 +108,7 @@ jobs:
                 git push 
             - name: Create Pull Request
               id: cpr
-              if: ${{ success() && steps.mainfest-update.outcome == 'success' }}
+              if: ${{ success() && steps.mainfest-update-int.outcome == 'success' }}
               uses: peter-evans/create-pull-request@v5
               with:
                 token: ${{ secrets.repo_read_PAT }}
