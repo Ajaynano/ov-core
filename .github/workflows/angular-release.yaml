@@ -88,12 +88,11 @@ jobs:
                 # create a PR to release from develop
                 gh auth login --with-token < token.txt
                 gh pr create \
-                   --assignee "@me" \
+                   --assignee Ajaynano \
                    --body "updating int manifestfile" \
                    --title "chore: update mainfest file" \
                    --head "$BRANCH_NAME" \
-                   --base "release" \
-                   --label "automatedpr"
+                   --base "release" 
 
             # - name: Create Pull Request
             #   id: cpr
