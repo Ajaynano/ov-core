@@ -88,7 +88,6 @@ jobs:
                 # create a PR to release from develop
                 gh auth login --with-token < token.txt
                 gh pr create \
-                   --assignee "@me"
                    --body "updating int manifestfile" \
                    --title "chore: update mainfest file" \
                    --head "$BRANCH_NAME" \
