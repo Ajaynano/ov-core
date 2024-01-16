@@ -1,4 +1,4 @@
-name: Back-end dev release
+name: Back-end int  release
 
 on:
     workflow_call:
@@ -40,7 +40,7 @@ jobs:
             - name:  Build backend service
               run: echo builing ${{ inputs.project-name }}
             
-            - name: Build container and push to dev
+            - name: Build container and push to int
               id: backend
               if: ${{ inputs.tag-latest && github.ref == 'refs/heads/release' }}
               run: |
