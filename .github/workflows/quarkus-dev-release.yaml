@@ -37,9 +37,9 @@ jobs:
                 path: 'ov-core-gitops'
                 persist-credentials: true
                 ref: 'develop'
-            - name:  Build admin ui
-              run: echo builing UI
-            
+            - name:  Build backend service
+              run: echo builing ${{ inputs.project-name }}
+              
             - name: Build container and push to dev
               id: backend
               if: ${{ inputs.tag-latest && github.ref == 'refs/heads/develop' }}
