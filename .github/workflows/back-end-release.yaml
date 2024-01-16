@@ -28,11 +28,11 @@ on:
             default: false
 jobs:
     release-admin-ui-dev:
-        name: create Release for admin ui dev
+        name: create Release backend Dev
         if: ${{ inputs.backend && inputs.environment == 'Dev'}}
         uses: ./.github/workflows/quarkus-dev-release.yaml
         with:
-            project-name: 'admin-ui'
+            project-name: '${{ inputs.backend }}'
             version: ${{ inputs.version }}
             version-postfix: '-dev'
             tag-latest: ${{ inputs.tag-latest }}
