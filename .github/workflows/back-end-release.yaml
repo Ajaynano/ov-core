@@ -1,0 +1,39 @@
+name: Backed end release
+
+on:
+  workflow_dispatch:
+    inputs:
+        backend:
+          type: choice
+          description: select back end service
+          options:
+            - auditor
+            - c-m
+            - s-r-creator
+            - s-r-l
+            - s-r-p
+            - s-r-collector
+            - t-l
+            - t-d
+        version:
+             type: string
+        environment:
+            type: choice
+            options:
+                - Dev
+                - Int
+                - Prod
+        tag-latest:
+            type: boolean
+            default: false
+jobs:
+    release-admin-ui-dev:
+        name: create Release for admin ui dev
+        if: ${{ inputs.backend && inputs.environment == 'Dev'}}
+        uses: ./.github/workflows/quarkus-dev-release.yaml
+        with:
+            project-name: 'admin-ui'
+            version: ${{ inputs.version }}
+            version-postfix: '-dev'
+            tag-latest: ${{ inputs.tag-latest }}
+        secrets: inherit
