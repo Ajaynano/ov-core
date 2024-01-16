@@ -27,7 +27,7 @@ on:
             type: boolean
             default: false
 jobs:
-    release-admin-ui-dev:
+    backend-dev:
         name: create Release backend Dev
         if: ${{ inputs.backend && inputs.environment == 'Dev'}}
         uses: ./.github/workflows/quarkus-dev-release.yaml
@@ -35,5 +35,16 @@ jobs:
             project-name: '${{ inputs.backend }}'
             version: ${{ inputs.version }}
             version-postfix: '-dev'
+            tag-latest: ${{ inputs.tag-latest }}
+        secrets: inherit
+    
+    backend-int:
+        name: create Release backend Int
+        if: ${{ inputs.backend && inputs.environment == 'Int'}}
+        uses: ./.github/workflows/quarkus-int-release.yaml
+        with:
+            project-name: '${{ inputs.backend }}'
+            version: ${{ inputs.version }}
+            version-postfix: '-int'
             tag-latest: ${{ inputs.tag-latest }}
         secrets: inherit
