@@ -54,7 +54,7 @@ jobs:
               working-directory: ov-core-gitops
               run: |
                 BRANCH_NAME="main"
-                git checkout $BRANCH_NAME
+                git checkout -b $BRANCH_NAME
                 sed -i '/^admin-ui:/{n;s/imageVersion:.*/imageVersion:\ ${{ inputs.version }}${{ inputs.version-postfix }}/;}' ovc-app/config/envs/test/values-version.yaml
                 git add -A
                 git config --global user.name github-actions
