@@ -53,7 +53,7 @@ jobs:
               if: ${{ success() && steps.admin-ui-dev.outcome == 'success' }}
               working-directory: ov-core-gitops
               run: |
-                BRANCH_NAME="develop"
+                BRANCH_NAME="main"
                 git checkout $BRANCH_NAME
                 sed -i '/^admin-ui:/{n;s/imageVersion:.*/imageVersion:\ ${{ inputs.version }}${{ inputs.version-postfix }}/;}' ovc-app/config/envs/test/values-version.yaml
                 git add -A
