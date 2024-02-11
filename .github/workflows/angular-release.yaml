@@ -94,7 +94,7 @@ jobs:
               run: |
                 image_version="`awk '$1 == "imageVersion:"{if (key == "admin-ui:") print $NF; next } {key=$1}' ovc-app/config/envs/int/values-version.yaml`"
                 echo $image_version
-                image_version="`echo $imagev2 | egrep -o '^[^-]+'`"
+                image_version="`echo $image_version | egrep -o '^[^-]+'`"
                 sed -i '/^admin-ui:/{n;s/imageVersion:.*/imageVersion:\ $image_version${{ inputs.version-postfix }}/;}' ovc-app/config/envs/prod/values-version.yaml
                 git add .
                 git config --global user.name github-actions
