@@ -15,7 +15,10 @@ on:
                 type: string
                 description: 'the version postfix to add to the tag'
                 required: false
-
+            tag-latest:
+                type: boolean
+                default: true  
+                required: true
 jobs:
     release-angular:
         name:   Create quaker release
