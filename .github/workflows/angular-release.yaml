@@ -92,8 +92,6 @@ jobs:
               if: ${{ github.ref == 'refs/heads/main' }}
               working-directory: ov-core-gitops
               run: |
-                BRANCH_NAME="origin/release"
-                git checkout $BRANCH_NAME
                 image_version="`awk '$1 == "imageVersion:"{if (key == "admin-ui:") print $NF; next } {key=$1}' ovc-app/config/envs/int/values-version.yaml`"
                 echo $image_version
                 image_version="`echo $imagev2 | egrep -o '^[^-]+'`"
