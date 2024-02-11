@@ -92,10 +92,12 @@ jobs:
               if: ${{ github.ref == 'refs/heads/main' }}
               working-directory: ov-core-gitops
               run: |
-                image_version="`awk '$1 == "imageVersion:"{if (key == "admin-ui:") print $NF; next } {key=$1}' ovc-app/config/envs/int/values-version.yaml`"
-                echo $image_version
-                image_version="`echo $image_version | egrep -o '^[^-]+'`"
-                sed -i '/^admin-ui:/{n;s/imageVersion:.*/imageVersion:\ $image_version${{ inputs.version-postfix }}/;}' ovc-app/config/envs/prod/values-version.yaml
+                git checkout -b release
+                int_version="`awk '$1 == "imageVersion:"{if (key == "admin-ui:") print $NF; next } {key=$1}' ovc-app/config/envs/int/values-version.yaml`"
+                echo $int_version
+                prod_version="`echo $int_version | egrep -o '^[^-]+'`"
+                echo $prod_version
+                sed -i '/^admin-ui:/{n;s/imageVersion:.*/imageVersion:\ ${{ prod_version }}${{ inputs.version-postfix }}/;}' ovc-app/config/envs/prod/values-version.yaml
                 git add .
                 git config --global user.name github-actions
                 git config user.email github-actions@github.com
@@ -109,7 +111,7 @@ jobs:
                    --assignee Ajaynano \
                    --body "updating int manifestfile" \
                    --title "chore: update mainfest file" \
-                   --head "$BRANCH_NAME" \
+                   --head "release" \
                    --base "main"
             # - name: Create Pull Request
             #   id: cpr
