@@ -35,6 +35,16 @@ jobs:
                 token: ${{ secrets.repo_read_PAT }}
                 path: 'ov-core-gitops'
                 persist-credentials: true
+                ref: 'main'
+
+            - name: Checkout ov-core-gitops
+              uses: actions/checkout@v3
+              with:
+                repository: Ajaynano/ov-core-gitops
+                token: ${{ secrets.repo_read_PAT }}
+                path: 'ov-core-gitops'
+                persist-credentials: true
+                ref: "main"
             - name:  Build admin ui
               run: echo builing UI
             
