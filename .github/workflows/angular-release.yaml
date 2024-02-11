@@ -78,8 +78,8 @@ jobs:
               if: ${{ success() && steps.admin-ui-int.outcome == 'success' }}
               working-directory: ov-core-gitops
               run: |
-                # BRANCH_NAME="refs/heads/release"
-                git checkout origin/release
+                BRANCH_NAME="develop"
+                git checkout $BRANCH_NAME
                 sed -i '/^admin-ui:/{n;s/imageVersion:.*/imageVersion:\ ${{ inputs.version }}${{ inputs.version-postfix }}/;}' ovc-app/config/envs/int/values-version.yaml
                 git add .
                 git config --global user.name github-actions
@@ -102,7 +102,8 @@ jobs:
               if: ${{ github.ref == 'refs/heads/main' }}
               working-directory: ov-core-gitops
               run: |
-                git checkout -b release
+                BRANCH_NAME="release"
+                git checkout $BRANCH_NAME
                 int_version="`awk '$1 == "imageVersion:"{if (key == "admin-ui:") print $NF; next } {key=$1}' ovc-app/config/envs/int/values-version.yaml`"
                 echo $int_version
                 prod_version="`echo $int_version | egrep -o '^[^-]+'`"
