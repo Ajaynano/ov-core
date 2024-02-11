@@ -89,7 +89,7 @@ jobs:
 
             - name: production deployment updating k8 manifest
               id: mainfest-update-prod
-              if: github.ref == 'ref/heads/main'
+              if: ${{ github.ref == 'refs/heads/main' }}
               working-directory: ov-core-gitops
               run: |
                 BRANCH_NAME="release"
