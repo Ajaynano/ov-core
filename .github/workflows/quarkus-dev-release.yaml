@@ -36,7 +36,6 @@ jobs:
                 token: ${{ secrets.PAT_PR }}
                 path: 'ov-core-gitops'
                 persist-credentials: true
-                ref: 'develop'
             - name:  Build backend service
               run: echo builing ${{ inputs.project-name }}
               
@@ -53,8 +52,6 @@ jobs:
               if: ${{ success() && steps.backend.outcome == 'success' }}
               working-directory: ov-core-gitops
               run: |
-                BRANCH_NAME="develop"
-                git checkout $BRANCH_NAME
                 sed -i '/^${{ inputs.project-name }}:/{n;s/imageVersion:.*/imageVersion:\ ${{ inputs.version }}${{ inputs.version-postfix }}/;}' ovc-app/config/envs/test/values-version.yaml
                 git add -A
                 git config --global user.name github-actions
