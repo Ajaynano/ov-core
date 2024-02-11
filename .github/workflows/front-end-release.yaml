@@ -14,9 +14,6 @@ on:
                 - Dev
                 - Int
                 - Prod
-        tag-latest:
-            type: boolean
-            default: false
 jobs:
     release-admin-ui-dev:
         name: create Release for admin ui dev
@@ -26,7 +23,7 @@ jobs:
             project-name: 'admin-ui'
             version: ${{ inputs.version }}
             version-postfix: '-dev'
-            tag-latest: ${{ inputs.tag-latest }}
+            tag-latest: true
         secrets: inherit
         
     release-admin-ui-int:
@@ -37,17 +34,17 @@ jobs:
             project-name: 'admin-ui'
             version: ${{ inputs.version }}
             version-postfix: '-int'
-            tag-latest: ${{ inputs.tag-latest }}
+            tag-latest: true
         secrets: inherit    
 
     release-admin-ui-prod:
-        name: create Release for admin ui dev
+        name: create Release for admin ui production
         if: ${{ inputs.admin-ui && inputs.environment == 'Prod'}}
         uses: ./.github/workflows/angular-release.yaml
         with:
             project-name: 'admin-ui'
             version: ${{ inputs.version }}
-            version-postfix: '-int'
-            tag-latest: ${{ inputs.tag-latest }}
+            version-postfix: '-prod'
+            tag-latest: true
         secrets: inherit   
             

@@ -15,10 +15,6 @@ on:
                 type: string
                 description: 'the version postfix to add to the tag'
                 required: false
-            tag-latest:
-                type: boolean
-                default: false  
-                required: false
 
 jobs:
     release-angular:
@@ -41,9 +37,8 @@ jobs:
             
             - name: Build container and push to dev
               id: admin-ui-dev
-              if: ${{ inputs.tag-latest && github.ref == 'refs/heads/develop' }}
+              if: ${{ github.ref == 'refs/heads/develop' }}
               run: |
-                echo ${{ inputs.tag-latest }}
                 echo ${{ inputs.version }}
                 echo "added new code"
 
@@ -60,13 +55,12 @@ jobs:
                 git push 
             - name: Build container and push to int
               id: admin-ui-int
-              if: ${{ inputs.tag-latest && github.ref == 'refs/heads/release' }}
+              if: ${{ github.ref == 'refs/heads/release' }}
               run: |
-                echo ${{ inputs.tag-latest }}
                 echo ${{ inputs.version }}${{ inputs.version-postfix }}
                 echo "added int build and deploy"
 
-            - name: update dev k8 manifest
+            - name: update int k8 manifest
               id: mainfest-update-int
               if: ${{ success() && steps.admin-ui-int.outcome == 'success' }}
               working-directory: ov-core-gitops
@@ -89,7 +83,7 @@ jobs:
                    --title "chore: update mainfest file" \
                    --head "$BRANCH_NAME" \
                    --base "release" 
-                   
+
             - name: production deployment updating k8 manifest
               id: mainfest-update-prod
               if: github.ref == 'ref/heads/main'
