@@ -1,0 +1,50 @@
+name: Backed end release
+
+on:
+  workflow_dispatch:
+    inputs:
+        backend:
+          type: choice
+          description: select back end service
+          options:
+            - auditor
+            - c-m
+            - s-r-creator
+            - s-r-l
+            - s-r-p
+            - s-r-collector
+            - t-l
+            - t-d
+        version:
+             type: string
+        environment:
+            type: choice
+            options:
+                - Dev
+                - Int
+                - Prod
+        tag-latest:
+            type: boolean
+            default: false
+jobs:
+    backend-dev:
+        name: create Release backend Dev
+        if: ${{ inputs.backend && inputs.environment == 'Dev'}}
+        uses: ./.github/workflows/quarkus-dev-release.yaml
+        with:
+            project-name: '${{ inputs.backend }}'
+            version: ${{ inputs.version }}
+            version-postfix: '-dev'
+            tag-latest: ${{ inputs.tag-latest }}
+        secrets: inherit
+    
+    backend-int:
+        name: create Release backend Int
+        if: ${{ inputs.backend && inputs.environment == 'Int'}}
+        uses: ./.github/workflows/quarkus-int-release.yaml
+        with:
+            project-name: '${{ inputs.backend }}'
+            version: ${{ inputs.version }}
+            version-postfix: '-int'
+            tag-latest: ${{ inputs.tag-latest }}
+        secrets: inherit
