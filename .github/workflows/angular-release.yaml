@@ -86,7 +86,7 @@ jobs:
                    --body "updating int manifestfile" \
                    --title "chore: update mainfest file" \
                    --head "$BRANCH_NAME" \
-                   --base "main" 
+                   --base "release" 
 
             - name: production deployment updating k8 manifest
               id: mainfest-update-prod
