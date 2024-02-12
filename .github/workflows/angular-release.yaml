@@ -35,7 +35,7 @@ jobs:
                 token: ${{ secrets.repo_read_PAT }}
                 path: 'ov-core-gitops'
                 persist-credentials: true
-                ref: 'release'
+                ref: 'develop'
             - name:  Build admin ui
               run: echo builing UI
             
