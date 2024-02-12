@@ -70,7 +70,7 @@ jobs:
               if: ${{ success() && steps.admin-ui-int.outcome == 'success' }}
               working-directory: ov-core-gitops
               run: |
-                BRANCH_NAME="develop"
+                BRANCH_NAME=${{ github.ref == 'refs/heads/release' }}
                 git checkout $BRANCH_NAME
                 sed -i '/^admin-ui:/{n;s/imageVersion:.*/imageVersion:\ ${{ inputs.version }}${{ inputs.version-postfix }}/;}' ovc-app/config/envs/int/values-version.yaml
                 git add .
