@@ -72,7 +72,7 @@ jobs:
               run: |
                 BRANCH_NAME=${{ github.ref == 'refs/heads/release' }}
                 echo $BRANCH_NAME
-                # git checkout $BRANCH_NAME
+                git checkout $BRANCH_NAME
                 # sed -i '/^admin-ui:/{n;s/imageVersion:.*/imageVersion:\ ${{ inputs.version }}${{ inputs.version-postfix }}/;}' ovc-app/config/envs/int/values-version.yaml
                 # git add .
                 # git config --global user.name github-actions
