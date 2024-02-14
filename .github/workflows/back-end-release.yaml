@@ -48,3 +48,10 @@ jobs:
             version-postfix: '-int'
             tag-latest: ${{ inputs.tag-latest }}
         secrets: inherit
+    backend-prod:
+        name: create Release backend prod
+        if: ${{ inputs.backend && inputs.environment == 'prod'}}
+        uses: ./.github/workflows/quarkus-prod-release.yaml
+        with:
+            project-name: '${{ inputs.backend }}'
+        secrets: inherit
