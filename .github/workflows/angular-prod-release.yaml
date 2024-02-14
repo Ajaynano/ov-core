@@ -31,7 +31,7 @@ jobs:
               run: |
                 BRANCH_NAME="release"
                 git checkout $BRANCH_NAME
-                int_version="`awk '$1 == "imageVersion:"{if (key == "${{ inputs.project-name }:") print $NF; next } {key=$1}' ovc-app/config/envs/int/values-version.yaml`"
+                int_version="`awk '$1 == "imageVersion:"{if (key == "${{ inputs.project-name }}:") print $NF; next } {key=$1}' ovc-app/config/envs/int/values-version.yaml`"
                 echo $int_version
                 sed -i '/^${{ inputs.project-name }}:/{n;s/imageVersion:.*/imageVersion:\ '$int_version'/;}' ovc-app/config/envs/prod/values-version.yaml
                 git add -A
