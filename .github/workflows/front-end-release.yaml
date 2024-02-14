@@ -40,11 +40,8 @@ jobs:
     release-admin-ui-prod:
         name: create Release for admin ui production
         if: ${{ inputs.admin-ui && inputs.environment == 'Prod'}}
-        uses: ./.github/workflows/angular-release.yaml
+        uses: ./.github/workflows/angular-prod-release.yaml
         with:
             project-name: 'admin-ui'
-            version: ${{ inputs.version }}
-            version-postfix: '-prod'
-            tag-latest: true
         secrets: inherit   
             
