@@ -37,6 +37,8 @@ jobs:
                 path: 'ov-core-gitops'
                 persist-credentials: true
                 fetch-depth: '0'
+                ref: 'develop'
+                
             - name:  Build backend service
               run: echo builing ${{ inputs.project-name }}
             
