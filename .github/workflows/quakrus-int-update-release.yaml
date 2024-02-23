@@ -72,6 +72,5 @@ jobs:
                   automated pr
                 assignees: Ajaynano
                 reviewers: Ajaynano
-                milestone: 1
                 draft: false
            
