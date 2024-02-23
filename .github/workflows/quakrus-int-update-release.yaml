@@ -65,7 +65,7 @@ jobs:
             
             - uses: peter-evans/create-pull-request@v6
               with:
-                token: ${{ secrets.PAT }}
+                token: ${{ secrets.PAT_PR }}
             
             # - name: Create Pull Request 
             #   id: cpr
