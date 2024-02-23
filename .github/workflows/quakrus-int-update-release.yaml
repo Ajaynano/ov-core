@@ -36,7 +36,6 @@ jobs:
                 token: ${{ secrets.PAT_PR }}
                 path: 'ov-core-gitops'
                 persist-credentials: true
-                fetch-depth: '0'
                 ref: 'develop'
 
             - name:  Build backend service
@@ -50,7 +49,7 @@ jobs:
                 echo ${{ inputs.version }}
                 echo "added new code"
             
-            - name: update dev k8 manifest
+            - name: update int k8 manifest
               id: mainfest-update
               if: ${{ success() && steps.backend.outcome == 'success' }}
               working-directory: ov-core-gitops
@@ -73,7 +72,6 @@ jobs:
                 commit-message: Updated git-ops repo int release
                 committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
                 author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
-                signoff: false
                 path: ov-core-gitops
                 branch: develop
                 base: release
@@ -89,5 +87,3 @@ jobs:
                   automated pr
                 assignees: Ajaynano
                 reviewers: Ajaynano
-                draft: false
-           
