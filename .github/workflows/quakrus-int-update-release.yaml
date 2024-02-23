@@ -75,7 +75,7 @@ jobs:
                 path: 'ov-core-gitops'
                 branch: develop
                 base: release
-                delete-branch: true
+                delete-branch: false
                 title: '[Example] Update report'
                 body: |
                   - Updated with *today's* date
