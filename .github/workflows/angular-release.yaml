@@ -35,6 +35,7 @@ jobs:
                 token: ${{ secrets.repo_read_PAT }}
                 path: 'ov-core-gitops'
                 persist-credentials: true
+                fetch-depth: '0'
 
             - name:  Build admin ui
               run: echo builing UI
@@ -70,7 +71,8 @@ jobs:
               if: ${{ success() && steps.admin-ui-int.outcome == 'success' }}
               working-directory: ov-core-gitops
               run: |
-                BRANCH_NAME="develop"
+                BRANCH_NAME='develop'
+                echo $BRANCH_NAME
                 git checkout $BRANCH_NAME
                 sed -i '/^admin-ui:/{n;s/imageVersion:.*/imageVersion:\ ${{ inputs.version }}${{ inputs.version-postfix }}/;}' ovc-app/config/envs/int/values-version.yaml
                 git add .

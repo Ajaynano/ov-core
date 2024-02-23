@@ -27,7 +27,7 @@ jobs:
         secrets: inherit
         
     release-admin-ui-int:
-        name: create Release for admin ui int
+        name: create Release for admin ui dev
         if: ${{ inputs.admin-ui && inputs.environment == 'Int'}}
         uses: ./.github/workflows/angular-release.yaml
         with:
