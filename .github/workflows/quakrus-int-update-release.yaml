@@ -67,7 +67,7 @@ jobs:
               with:
                 token: ${{ secrets.PAT_PR }}
                 path: ov-core-gitops
-                branch: develop
+                branch: release
 
             
             # - name: Create Pull Request 
