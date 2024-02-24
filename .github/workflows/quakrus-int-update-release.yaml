@@ -34,7 +34,6 @@ jobs:
               with:
                 repository: Ajaynano/ov-core-gitops
                 token: ${{ secrets.NEW_CPR }}
-                path: 'ov-core-gitops'
                 persist-credentials: true
                 ref: 'develop'
 
@@ -69,7 +68,7 @@ jobs:
               with:
                 token: ${{ secrets.NEW_CPR }}
                 path: ov-core-gitops
-                branch: release
+                base: release
                 title: '[Example] Update report'
                 body: |
                   - Updated with *today's* date
