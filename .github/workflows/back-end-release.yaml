@@ -49,13 +49,13 @@ jobs:
             tag-latest: ${{ inputs.tag-latest }}
         secrets: inherit
     
-    backend-int-update:
-        name: create Release backend Int
-        if: ${{ inputs.backend && inputs.environment == 'Int'}}
-        uses: ./.github/workflows/quakrus-int-update-release.yaml
-        with:
-            project-name: '${{ inputs.backend }}'
-            version: ${{ inputs.version }}
-            version-postfix: '-int'
-            tag-latest: ${{ inputs.tag-latest }}
-        secrets: inherit
+    # backend-int-update:
+    #     name: create Release backend Int
+    #     if: ${{ inputs.backend && inputs.environment == 'Int'}}
+    #     uses: ./.github/workflows/quakrus-int-update-release.yaml
+    #     with:
+    #         project-name: '${{ inputs.backend }}'
+    #         version: ${{ inputs.version }}
+    #         version-postfix: '-int'
+    #         tag-latest: ${{ inputs.tag-latest }}
+    #     secrets: inherit
