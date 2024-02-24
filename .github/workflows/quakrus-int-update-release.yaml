@@ -69,7 +69,8 @@ jobs:
               with:
                 token: ${{ secrets.NEW_CPR }}
                 path: ov-core-gitops
-                branch: release
+                branch: develop
+                base: release
                 branch-suffix: random
                 title: '[Example] Update report'
                 body: |
