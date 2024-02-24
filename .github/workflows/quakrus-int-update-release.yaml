@@ -34,6 +34,7 @@ jobs:
               with:
                 repository: Ajaynano/ov-core-gitops
                 token: ${{ secrets.NEW_CPR }}
+                path: 'ov-core-gitops'
                 persist-credentials: true
                 ref: 'develop'
 
